@@ -31,18 +31,19 @@
             this.label1 = new System.Windows.Forms.Label();
             this.semesterCmbBox = new System.Windows.Forms.ComboBox();
             this.takenDataGrid = new System.Windows.Forms.DataGridView();
+            this.CourseName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GradeReceived = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.validBtn = new System.Windows.Forms.Button();
-            this.validListView = new System.Windows.Forms.ListView();
             this.checkBtn = new System.Windows.Forms.Button();
             this.checkTxtBox = new System.Windows.Forms.TextBox();
-            this.memoryListView = new System.Windows.Forms.ListView();
             this.label3 = new System.Windows.Forms.Label();
             this.nextBtn = new System.Windows.Forms.Button();
             this.finishBtn = new System.Windows.Forms.Button();
             this.howWhyBtn = new System.Windows.Forms.Button();
-            this.CourseName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GradeReceived = new System.Windows.Forms.DataGridViewComboBoxColumn();
+            this.submitBtn = new System.Windows.Forms.Button();
+            this.memoryListBox = new System.Windows.Forms.ListBox();
+            this.validListBox = new System.Windows.Forms.ListBox();
             ((System.ComponentModel.ISupportInitialize)(this.takenDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -50,19 +51,27 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.label1.Location = new System.Drawing.Point(12, 38);
+            this.label1.Location = new System.Drawing.Point(18, 58);
+            this.label1.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(106, 26);
+            this.label1.Size = new System.Drawing.Size(152, 37);
             this.label1.TabIndex = 0;
             this.label1.Text = "Semester";
             // 
             // semesterCmbBox
             // 
+            this.semesterCmbBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 14F);
             this.semesterCmbBox.FormattingEnabled = true;
-            this.semesterCmbBox.Location = new System.Drawing.Point(17, 67);
+            this.semesterCmbBox.Items.AddRange(new object[] {
+            "Spring",
+            "Fall",
+            "Summer"});
+            this.semesterCmbBox.Location = new System.Drawing.Point(26, 103);
+            this.semesterCmbBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.semesterCmbBox.Name = "semesterCmbBox";
-            this.semesterCmbBox.Size = new System.Drawing.Size(282, 21);
+            this.semesterCmbBox.Size = new System.Drawing.Size(441, 40);
             this.semesterCmbBox.TabIndex = 1;
+            this.semesterCmbBox.SelectedIndexChanged += new System.EventHandler(this.semesterCmbBox_SelectedIndexChanged);
             // 
             // takenDataGrid
             // 
@@ -70,48 +79,63 @@
             this.takenDataGrid.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
             this.CourseName,
             this.GradeReceived});
-            this.takenDataGrid.Location = new System.Drawing.Point(17, 143);
+            this.takenDataGrid.Location = new System.Drawing.Point(26, 220);
+            this.takenDataGrid.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.takenDataGrid.Name = "takenDataGrid";
-            this.takenDataGrid.Size = new System.Drawing.Size(293, 365);
+            this.takenDataGrid.RowHeadersWidth = 62;
+            this.takenDataGrid.Size = new System.Drawing.Size(441, 470);
             this.takenDataGrid.TabIndex = 2;
+            // 
+            // CourseName
+            // 
+            this.CourseName.HeaderText = "Course Name";
+            this.CourseName.MinimumWidth = 8;
+            this.CourseName.Name = "CourseName";
+            this.CourseName.Width = 125;
+            // 
+            // GradeReceived
+            // 
+            this.GradeReceived.HeaderText = "Grade Received";
+            this.GradeReceived.Items.AddRange(new object[] {
+            "A",
+            "B",
+            "C",
+            "D",
+            "F"});
+            this.GradeReceived.MinimumWidth = 8;
+            this.GradeReceived.Name = "GradeReceived";
+            this.GradeReceived.Width = 150;
             // 
             // label2
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.label2.Location = new System.Drawing.Point(12, 114);
+            this.label2.Location = new System.Drawing.Point(18, 175);
+            this.label2.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(158, 26);
+            this.label2.Size = new System.Drawing.Size(234, 37);
             this.label2.TabIndex = 3;
             this.label2.Text = "Courses Taken";
             // 
             // validBtn
             // 
             this.validBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.validBtn.Location = new System.Drawing.Point(369, 38);
+            this.validBtn.Location = new System.Drawing.Point(554, 58);
+            this.validBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.validBtn.Name = "validBtn";
-            this.validBtn.Size = new System.Drawing.Size(221, 50);
+            this.validBtn.Size = new System.Drawing.Size(332, 77);
             this.validBtn.TabIndex = 4;
             this.validBtn.Text = "Get Valid Courses";
             this.validBtn.UseVisualStyleBackColor = true;
-            // 
-            // validListView
-            // 
-            this.validListView.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.validListView.GridLines = true;
-            this.validListView.HideSelection = false;
-            this.validListView.Location = new System.Drawing.Point(369, 94);
-            this.validListView.Name = "validListView";
-            this.validListView.Size = new System.Drawing.Size(221, 300);
-            this.validListView.TabIndex = 5;
-            this.validListView.UseCompatibleStateImageBehavior = false;
+            this.validBtn.Click += new System.EventHandler(this.validBtn_Click);
             // 
             // checkBtn
             // 
             this.checkBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.checkBtn.Location = new System.Drawing.Point(369, 426);
+            this.checkBtn.Location = new System.Drawing.Point(554, 655);
+            this.checkBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.checkBtn.Name = "checkBtn";
-            this.checkBtn.Size = new System.Drawing.Size(221, 50);
+            this.checkBtn.Size = new System.Drawing.Size(332, 77);
             this.checkBtn.TabIndex = 6;
             this.checkBtn.Text = "Check Course";
             this.checkBtn.UseVisualStyleBackColor = true;
@@ -119,91 +143,110 @@
             // checkTxtBox
             // 
             this.checkTxtBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.checkTxtBox.Location = new System.Drawing.Point(369, 482);
+            this.checkTxtBox.Location = new System.Drawing.Point(554, 742);
+            this.checkTxtBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.checkTxtBox.Name = "checkTxtBox";
-            this.checkTxtBox.Size = new System.Drawing.Size(221, 26);
+            this.checkTxtBox.Size = new System.Drawing.Size(330, 35);
             this.checkTxtBox.TabIndex = 7;
-            // 
-            // memoryListView
-            // 
-            this.memoryListView.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.memoryListView.GridLines = true;
-            this.memoryListView.HideSelection = false;
-            this.memoryListView.Location = new System.Drawing.Point(655, 67);
-            this.memoryListView.Name = "memoryListView";
-            this.memoryListView.Size = new System.Drawing.Size(270, 312);
-            this.memoryListView.TabIndex = 8;
-            this.memoryListView.UseCompatibleStateImageBehavior = false;
             // 
             // label3
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.label3.Location = new System.Drawing.Point(650, 38);
+            this.label3.Location = new System.Drawing.Point(975, 58);
+            this.label3.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
             this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(177, 26);
+            this.label3.Size = new System.Drawing.Size(259, 37);
             this.label3.TabIndex = 9;
             this.label3.Text = "Working Memory";
             // 
             // nextBtn
             // 
             this.nextBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.nextBtn.Location = new System.Drawing.Point(655, 402);
+            this.nextBtn.Location = new System.Drawing.Point(982, 618);
+            this.nextBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.nextBtn.Name = "nextBtn";
-            this.nextBtn.Size = new System.Drawing.Size(122, 50);
+            this.nextBtn.Size = new System.Drawing.Size(183, 77);
             this.nextBtn.TabIndex = 10;
             this.nextBtn.Text = "Next Step";
             this.nextBtn.UseVisualStyleBackColor = true;
+            this.nextBtn.Click += new System.EventHandler(this.nextBtn_Click);
             // 
             // finishBtn
             // 
             this.finishBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.finishBtn.Location = new System.Drawing.Point(803, 402);
+            this.finishBtn.Location = new System.Drawing.Point(1204, 618);
+            this.finishBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.finishBtn.Name = "finishBtn";
-            this.finishBtn.Size = new System.Drawing.Size(122, 50);
+            this.finishBtn.Size = new System.Drawing.Size(183, 77);
             this.finishBtn.TabIndex = 11;
             this.finishBtn.Text = "Finish";
             this.finishBtn.UseVisualStyleBackColor = true;
+            this.finishBtn.Click += new System.EventHandler(this.finishBtn_Click);
             // 
             // howWhyBtn
             // 
             this.howWhyBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.howWhyBtn.Location = new System.Drawing.Point(680, 458);
+            this.howWhyBtn.Location = new System.Drawing.Point(1020, 705);
+            this.howWhyBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.howWhyBtn.Name = "howWhyBtn";
-            this.howWhyBtn.Size = new System.Drawing.Size(221, 50);
+            this.howWhyBtn.Size = new System.Drawing.Size(332, 77);
             this.howWhyBtn.TabIndex = 12;
             this.howWhyBtn.Text = "How / Why";
             this.howWhyBtn.UseVisualStyleBackColor = true;
             // 
-            // CourseName
+            // submitBtn
             // 
-            this.CourseName.HeaderText = "Course Name";
-            this.CourseName.Name = "CourseName";
-            this.CourseName.Width = 150;
+            this.submitBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.submitBtn.Location = new System.Drawing.Point(25, 700);
+            this.submitBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
+            this.submitBtn.Name = "submitBtn";
+            this.submitBtn.Size = new System.Drawing.Size(442, 77);
+            this.submitBtn.TabIndex = 13;
+            this.submitBtn.Text = "Submit Courses";
+            this.submitBtn.UseVisualStyleBackColor = true;
+            this.submitBtn.Click += new System.EventHandler(this.submitBtn_Click);
             // 
-            // GradeReceived
+            // memoryListBox
             // 
-            this.GradeReceived.HeaderText = "Grade Received";
-            this.GradeReceived.Name = "GradeReceived";
+            this.memoryListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.memoryListBox.FormattingEnabled = true;
+            this.memoryListBox.ItemHeight = 29;
+            this.memoryListBox.Location = new System.Drawing.Point(982, 103);
+            this.memoryListBox.Name = "memoryListBox";
+            this.memoryListBox.Size = new System.Drawing.Size(405, 497);
+            this.memoryListBox.TabIndex = 14;
+            // 
+            // validListBox
+            // 
+            this.validListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.validListBox.FormattingEnabled = true;
+            this.validListBox.ItemHeight = 29;
+            this.validListBox.Location = new System.Drawing.Point(554, 144);
+            this.validListBox.Name = "validListBox";
+            this.validListBox.Size = new System.Drawing.Size(332, 439);
+            this.validListBox.TabIndex = 15;
             // 
             // Form1
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(959, 520);
+            this.ClientSize = new System.Drawing.Size(1438, 800);
+            this.Controls.Add(this.validListBox);
+            this.Controls.Add(this.memoryListBox);
+            this.Controls.Add(this.submitBtn);
             this.Controls.Add(this.howWhyBtn);
             this.Controls.Add(this.finishBtn);
             this.Controls.Add(this.nextBtn);
             this.Controls.Add(this.label3);
-            this.Controls.Add(this.memoryListView);
             this.Controls.Add(this.checkTxtBox);
             this.Controls.Add(this.checkBtn);
-            this.Controls.Add(this.validListView);
             this.Controls.Add(this.validBtn);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.takenDataGrid);
             this.Controls.Add(this.semesterCmbBox);
             this.Controls.Add(this.label1);
+            this.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.Name = "Form1";
             this.Text = "Form1";
             ((System.ComponentModel.ISupportInitialize)(this.takenDataGrid)).EndInit();
@@ -219,16 +262,17 @@
         private System.Windows.Forms.DataGridView takenDataGrid;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button validBtn;
-        private System.Windows.Forms.ListView validListView;
         private System.Windows.Forms.Button checkBtn;
         private System.Windows.Forms.TextBox checkTxtBox;
-        private System.Windows.Forms.ListView memoryListView;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button nextBtn;
         private System.Windows.Forms.Button finishBtn;
         private System.Windows.Forms.Button howWhyBtn;
+        private System.Windows.Forms.Button submitBtn;
         private System.Windows.Forms.DataGridViewTextBoxColumn CourseName;
         private System.Windows.Forms.DataGridViewComboBoxColumn GradeReceived;
+        private System.Windows.Forms.ListBox memoryListBox;
+        private System.Windows.Forms.ListBox validListBox;
     }
 }
 
