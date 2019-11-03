@@ -31,8 +31,6 @@
             this.label1 = new System.Windows.Forms.Label();
             this.semesterCmbBox = new System.Windows.Forms.ComboBox();
             this.takenDataGrid = new System.Windows.Forms.DataGridView();
-            this.CourseName = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.GradeReceived = new System.Windows.Forms.DataGridViewComboBoxColumn();
             this.label2 = new System.Windows.Forms.Label();
             this.validBtn = new System.Windows.Forms.Button();
             this.checkBtn = new System.Windows.Forms.Button();
@@ -48,6 +46,8 @@
             this.label5 = new System.Windows.Forms.Label();
             this.checkLabel = new System.Windows.Forms.Label();
             this.resetBtn = new System.Windows.Forms.Button();
+            this.CourseName = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.GradeReceived = new System.Windows.Forms.DataGridViewComboBoxColumn();
             ((System.ComponentModel.ISupportInitialize)(this.takenDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -89,26 +89,6 @@
             this.takenDataGrid.RowHeadersWidth = 62;
             this.takenDataGrid.Size = new System.Drawing.Size(441, 498);
             this.takenDataGrid.TabIndex = 2;
-            // 
-            // CourseName
-            // 
-            this.CourseName.HeaderText = "Course Name";
-            this.CourseName.MinimumWidth = 8;
-            this.CourseName.Name = "CourseName";
-            this.CourseName.Width = 125;
-            // 
-            // GradeReceived
-            // 
-            this.GradeReceived.HeaderText = "Grade Received";
-            this.GradeReceived.Items.AddRange(new object[] {
-            "A",
-            "B",
-            "C",
-            "D",
-            "F"});
-            this.GradeReceived.MinimumWidth = 8;
-            this.GradeReceived.Name = "GradeReceived";
-            this.GradeReceived.Width = 150;
             // 
             // label2
             // 
@@ -274,6 +254,25 @@
             this.resetBtn.Text = "Reset Student Info";
             this.resetBtn.UseVisualStyleBackColor = true;
             this.resetBtn.Click += new System.EventHandler(this.resetBtn_Click);
+            // 
+            // CourseName
+            // 
+            this.CourseName.HeaderText = "Course Name";
+            this.CourseName.MinimumWidth = 8;
+            this.CourseName.Name = "CourseName";
+            this.CourseName.Width = 125;
+            // 
+            // GradeReceived
+            // 
+            this.GradeReceived.HeaderText = "Grade Received";
+            this.GradeReceived.Items.AddRange(new object[] {
+            "A",
+            "B",
+            "C",
+            "D",
+            "F"});
+            this.GradeReceived.MinimumWidth = 8;
+            this.GradeReceived.Name = "GradeReceived";
             // 
             // Form1
             // 

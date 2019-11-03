@@ -188,7 +188,10 @@ namespace StudentAdvisement
 
         private void semesterCmbBox_SelectedIndexChanged(object sender, EventArgs e)
         {
-            selectedSemester = semesterCmbBox.SelectedItem.ToString();
+            if (semesterCmbBox.SelectedIndex != -1)
+            {
+                selectedSemester = semesterCmbBox.SelectedItem.ToString();
+            }
         }
 
         private void validBtn_Click(object sender, EventArgs e)
@@ -289,8 +292,6 @@ namespace StudentAdvisement
                     break;
             }
 
-            updateMemory();
-
             if (currentCheckStep != "check course") resultLabel.Text = result.ToString();
 
             // If the current requirements are not met, remove all steps belonging to course from queue
@@ -302,6 +303,8 @@ namespace StudentAdvisement
 
                 getNextCourse();
             }
+
+            updateMemory();
 
             if (finishSelected)
             {
@@ -317,8 +320,10 @@ namespace StudentAdvisement
 
         private void resetBtn_Click(object sender, EventArgs e)
         {
-            takenCourseList.Clear();
+            takenCourseList = new Dictionary<string, Course>();
             takenDataGrid.Rows.Clear();
+
+            semesterCmbBox.SelectedIndex = -1;
 
             validListBox.Items.Clear();
             checkTxtBox.Text = "";
