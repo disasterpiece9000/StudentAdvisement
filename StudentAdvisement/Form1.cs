@@ -37,7 +37,7 @@ namespace StudentAdvisement
             Dictionary<string, Course> courseList = new Dictionary<string, Course>();
 
             // Read all lines from CourseList.txt
-            System.IO.StreamReader courseText = new System.IO.StreamReader(@"c:\Users\HackerMan\source\repos\StudentAdvisementFinal\StudentAdvisement\CourseList.txt");
+            System.IO.StreamReader courseText = new System.IO.StreamReader("CourseList.txt");
 
             // Process each course line by line
             string line;
@@ -348,7 +348,7 @@ namespace StudentAdvisement
             this.Semesters = Semesters;
         }
 
-        // Overload for prereq course
+        // Overload for prereq and taken course
         public Course(string Type, string Name, char Grade)
         {
             this.Type = Type;
