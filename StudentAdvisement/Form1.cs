@@ -18,10 +18,11 @@ namespace StudentAdvisement
         public Course currentCourseCheck;
         public LinkedList<Course> prereqCheckQueue;
         public Course currentPrereqCheck;
-        public LinkedList<(string,string)> checkStepQueue;
+        public LinkedList<string[]> checkStepQueue;
         public string currentCheckStep;
 
         public bool finishSelected = false;
+        public bool backwardsChain = false;
 
         public Form1()
         {
@@ -105,8 +106,8 @@ namespace StudentAdvisement
 
             foreach (Course prereq in currentCourseCheck.Prerequs.Values)
             {
-                checkStepQueue.AddFirst(("check prereq grade", currentCourseCheck.Name));
-                checkStepQueue.AddFirst(("check prereq taken", currentCourseCheck.Name));
+                checkStepQueue.AddFirst(new string[] { "check prereq grade", "The grade received for " + prereq.Name + " meets the requirements", currentCourseCheck.Name});
+                checkStepQueue.AddFirst(new string[] { "check prereq taken", "Student has taken the prereq " + prereq.Name, currentCourseCheck.Name });
             }
         }
 
@@ -122,11 +123,20 @@ namespace StudentAdvisement
             // If no courses are left, display results
             else
             {
-                foreach (Course c in validCourses) validListBox.Items.Add(c.Name);
+                if (backwardsChain)
+                {
+                    if (validCourses.Count == 0) checkLabel.Text = "False";
+                    else if (validCourses[0].Name == currentCourseCheck.Name) checkLabel.Text = "True";
+                }
+                else
+                {
+                    foreach (Course c in validCourses) validListBox.Items.Add(c.Name);
 
-                memoryListBox.Items.Clear();
-                memoryListBox.Items.Add("Done!");
-                finishSelected = false;
+                    memoryListBox.Items.Clear();
+                    memoryListBox.Items.Add("Done!");
+                    resultLabel.Text = "";
+                    finishSelected = false;
+                }
             }
         }
 
@@ -137,17 +147,15 @@ namespace StudentAdvisement
 
             for (int i = 0; i < checkStepQueue.Count; i++)
             {
-                string step, course;
-                (step, course) = checkStepQueue.ElementAt(i);
-                memoryListBox.Items.Add(step + " for " + course);
+                string[] stepData = checkStepQueue.ElementAt(i);
+                memoryListBox.Items.Add(stepData[1]);
             }
         }
 
         // Remove all steps in queue that belong to the current course
-        public bool removeCourseFromQueue((string, string) stepData)
+        public bool removeCourseFromQueue(string[] stepData)
         {
-            string step, courseName;
-            (step, courseName) = stepData;
+            string courseName = stepData[2];
 
             if (courseName == currentCourseCheck.Name) return true;
             else return false;
@@ -180,12 +188,12 @@ namespace StudentAdvisement
         private void validBtn_Click(object sender, EventArgs e)
         {
             validCourses = new List<Course>();
-            checkStepQueue = new LinkedList<(string, string)>();
+            checkStepQueue = new LinkedList<string[]>();
 
             // Add each course to the step queue
             foreach (Course c in masterCourseList.Values)
             {
-                checkStepQueue.AddFirst(("check course", c.Name));
+                checkStepQueue.AddFirst(new string[] { "check course", "Student can take " + c.Name, c.Name });
             }
 
             updateMemory();
@@ -198,29 +206,56 @@ namespace StudentAdvisement
             nextBtn_Click(null, null);
         }
 
+        private void checkBtn_Click(object sender, EventArgs e)
+        {
+            validCourses = new List<Course>();
+            checkStepQueue = new LinkedList<string[]>();
+            backwardsChain = true;
+
+            Course selectedCourse = masterCourseList[checkTxtBox.Text];
+
+            checkStepQueue.AddFirst(new string[] {"check course", "Student can take " + selectedCourse.Name, selectedCourse.Name });
+            courseCheckQueue = new LinkedList<Course>();
+            courseCheckQueue.AddFirst(selectedCourse);
+            getNextCourse();
+
+            // Start first step
+            nextBtn_Click(null, null);
+        }
+
         private void nextBtn_Click(object sender, EventArgs e)
         {
             // Do nothing if step queue is empty
             if (checkStepQueue.Count == 0) return;
 
-            string currentCourse;
             bool result;
 
             // Pop current step off the step queue
-            (currentCheckStep, currentCourse) = checkStepQueue.First();
+            string[] stepData = checkStepQueue.First();
+            currentCheckStep = stepData[0];
             checkStepQueue.RemoveFirst();
             
             // Process current step
             switch (currentCheckStep)
             {
                 case "check course":
-                    checkStepQueue.AddFirst(("check semester", currentCourseCheck.Name));
+                    checkStepQueue.AddFirst(new string[] { "check prereqs", "Student meets the prereq requirements for " + currentCourseCheck.Name, currentCourseCheck.Name });
+                    checkStepQueue.AddFirst(new string[] { "check semester", currentCourseCheck.Name + " is offered this semester", currentCourseCheck.Name });
+                    checkStepQueue.AddFirst(new string[] { "check not taken", "Student has not already taken " + currentCourseCheck.Name , currentCourseCheck.Name });
                     result = true;
+                    break;
+
+                case "check not taken":
+                    result = !takenCourseList.ContainsKey(currentCourseCheck.Name);
+                    break;
+
+                case "check prereqs":
+                    result = true;
+                    setupPrereqs();
                     break;
 
                 case "check semester":
                     result = checkSemester();
-                    if (result) setupPrereqs();
                     break;
 
                 case "check prereq taken":
@@ -239,12 +274,14 @@ namespace StudentAdvisement
 
             updateMemory();
 
+            resultLabel.Text = result.ToString();
+
             // If the current requirements are not met, remove all steps belonging to course from queue
             if (!result)
             {
-                List<(string, string)> tempQueue = checkStepQueue.ToList<(string, string)>();
+                List<string[]> tempQueue = checkStepQueue.ToList<string[]>();
                 tempQueue.RemoveAll(removeCourseFromQueue);
-                checkStepQueue = new LinkedList<(string, string)>(tempQueue);
+                checkStepQueue = new LinkedList<string[]>(tempQueue);
 
                 getNextCourse();
             }

@@ -40,10 +40,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.nextBtn = new System.Windows.Forms.Button();
             this.finishBtn = new System.Windows.Forms.Button();
-            this.howWhyBtn = new System.Windows.Forms.Button();
             this.submitBtn = new System.Windows.Forms.Button();
             this.memoryListBox = new System.Windows.Forms.ListBox();
             this.validListBox = new System.Windows.Forms.ListBox();
+            this.label4 = new System.Windows.Forms.Label();
+            this.resultLabel = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.checkLabel = new System.Windows.Forms.Label();
             ((System.ComponentModel.ISupportInitialize)(this.takenDataGrid)).BeginInit();
             this.SuspendLayout();
             // 
@@ -104,7 +107,7 @@
             "F"});
             this.GradeReceived.MinimumWidth = 8;
             this.GradeReceived.Name = "GradeReceived";
-            this.GradeReceived.Width = 150;
+            this.GradeReceived.Width = 125;
             // 
             // label2
             // 
@@ -132,18 +135,19 @@
             // checkBtn
             // 
             this.checkBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.checkBtn.Location = new System.Drawing.Point(554, 655);
+            this.checkBtn.Location = new System.Drawing.Point(552, 613);
             this.checkBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.checkBtn.Name = "checkBtn";
             this.checkBtn.Size = new System.Drawing.Size(332, 77);
             this.checkBtn.TabIndex = 6;
             this.checkBtn.Text = "Check Course";
             this.checkBtn.UseVisualStyleBackColor = true;
+            this.checkBtn.Click += new System.EventHandler(this.checkBtn_Click);
             // 
             // checkTxtBox
             // 
             this.checkTxtBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
-            this.checkTxtBox.Location = new System.Drawing.Point(554, 742);
+            this.checkTxtBox.Location = new System.Drawing.Point(552, 700);
             this.checkTxtBox.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.checkTxtBox.Name = "checkTxtBox";
             this.checkTxtBox.Size = new System.Drawing.Size(330, 35);
@@ -163,7 +167,7 @@
             // nextBtn
             // 
             this.nextBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.nextBtn.Location = new System.Drawing.Point(982, 618);
+            this.nextBtn.Location = new System.Drawing.Point(982, 700);
             this.nextBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.nextBtn.Name = "nextBtn";
             this.nextBtn.Size = new System.Drawing.Size(183, 77);
@@ -175,7 +179,7 @@
             // finishBtn
             // 
             this.finishBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.finishBtn.Location = new System.Drawing.Point(1204, 618);
+            this.finishBtn.Location = new System.Drawing.Point(1204, 700);
             this.finishBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
             this.finishBtn.Name = "finishBtn";
             this.finishBtn.Size = new System.Drawing.Size(183, 77);
@@ -183,17 +187,6 @@
             this.finishBtn.Text = "Finish";
             this.finishBtn.UseVisualStyleBackColor = true;
             this.finishBtn.Click += new System.EventHandler(this.finishBtn_Click);
-            // 
-            // howWhyBtn
-            // 
-            this.howWhyBtn.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
-            this.howWhyBtn.Location = new System.Drawing.Point(1020, 705);
-            this.howWhyBtn.Margin = new System.Windows.Forms.Padding(4, 5, 4, 5);
-            this.howWhyBtn.Name = "howWhyBtn";
-            this.howWhyBtn.Size = new System.Drawing.Size(332, 77);
-            this.howWhyBtn.TabIndex = 12;
-            this.howWhyBtn.Text = "How / Why";
-            this.howWhyBtn.UseVisualStyleBackColor = true;
             // 
             // submitBtn
             // 
@@ -209,12 +202,12 @@
             // 
             // memoryListBox
             // 
-            this.memoryListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F);
+            this.memoryListBox.Font = new System.Drawing.Font("Microsoft Sans Serif", 8F);
             this.memoryListBox.FormattingEnabled = true;
-            this.memoryListBox.ItemHeight = 29;
+            this.memoryListBox.ItemHeight = 20;
             this.memoryListBox.Location = new System.Drawing.Point(982, 103);
             this.memoryListBox.Name = "memoryListBox";
-            this.memoryListBox.Size = new System.Drawing.Size(405, 497);
+            this.memoryListBox.Size = new System.Drawing.Size(405, 544);
             this.memoryListBox.TabIndex = 14;
             // 
             // validListBox
@@ -224,18 +217,63 @@
             this.validListBox.ItemHeight = 29;
             this.validListBox.Location = new System.Drawing.Point(554, 144);
             this.validListBox.Name = "validListBox";
-            this.validListBox.Size = new System.Drawing.Size(332, 439);
+            this.validListBox.Size = new System.Drawing.Size(332, 410);
             this.validListBox.TabIndex = 15;
+            // 
+            // label4
+            // 
+            this.label4.AutoSize = true;
+            this.label4.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.label4.Location = new System.Drawing.Point(975, 658);
+            this.label4.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(124, 37);
+            this.label4.TabIndex = 16;
+            this.label4.Text = "Result: ";
+            // 
+            // resultLabel
+            // 
+            this.resultLabel.AutoSize = true;
+            this.resultLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.resultLabel.Location = new System.Drawing.Point(1094, 658);
+            this.resultLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.resultLabel.Name = "resultLabel";
+            this.resultLabel.Size = new System.Drawing.Size(0, 37);
+            this.resultLabel.TabIndex = 17;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.label5.Location = new System.Drawing.Point(545, 754);
+            this.label5.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(124, 37);
+            this.label5.TabIndex = 18;
+            this.label5.Text = "Result: ";
+            // 
+            // checkLabel
+            // 
+            this.checkLabel.AutoSize = true;
+            this.checkLabel.Font = new System.Drawing.Font("Microsoft Sans Serif", 16F);
+            this.checkLabel.Location = new System.Drawing.Point(655, 754);
+            this.checkLabel.Margin = new System.Windows.Forms.Padding(4, 0, 4, 0);
+            this.checkLabel.Name = "checkLabel";
+            this.checkLabel.Size = new System.Drawing.Size(0, 37);
+            this.checkLabel.TabIndex = 19;
             // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 20F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1438, 800);
+            this.Controls.Add(this.checkLabel);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.resultLabel);
+            this.Controls.Add(this.label4);
             this.Controls.Add(this.validListBox);
             this.Controls.Add(this.memoryListBox);
             this.Controls.Add(this.submitBtn);
-            this.Controls.Add(this.howWhyBtn);
             this.Controls.Add(this.finishBtn);
             this.Controls.Add(this.nextBtn);
             this.Controls.Add(this.label3);
@@ -267,12 +305,15 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Button nextBtn;
         private System.Windows.Forms.Button finishBtn;
-        private System.Windows.Forms.Button howWhyBtn;
         private System.Windows.Forms.Button submitBtn;
-        private System.Windows.Forms.DataGridViewTextBoxColumn CourseName;
-        private System.Windows.Forms.DataGridViewComboBoxColumn GradeReceived;
         private System.Windows.Forms.ListBox memoryListBox;
         private System.Windows.Forms.ListBox validListBox;
+        private System.Windows.Forms.DataGridViewTextBoxColumn CourseName;
+        private System.Windows.Forms.DataGridViewComboBoxColumn GradeReceived;
+        private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.Label resultLabel;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label checkLabel;
     }
 }
 
