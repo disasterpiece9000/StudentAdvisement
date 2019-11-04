@@ -1,0 +1,86 @@
+using System;
+using System.Collections.Generic;
+
+namespace AI_Assignment_2
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            //Here is a list of prereqs for the CSCI4040 class
+            List<Course> prereqList = new List<Course>();
+            prereqList.Add(new Course("CSCI1212", "B", "FALL"));
+            prereqList.Add(new Course("CSCI2020", "C", "FALL"));
+
+            //Here is the list of classes our student has taken
+            List<Course> classesTaken = new List<Course>();
+            classesTaken.Add(new Course("CSCI1212", "B", "FALL"));
+            classesTaken.Add(new Course("CSCI2020", "C", "FALL"));
+
+            //Here we create our dictionary
+            Dictionary<string, List<Course>> classDict = new Dictionary<string, List<Course>>();
+            classDict.Add("CSCI4040", prereqList);
+
+            //Here we create a new key value pair specifically associated with class CSCI4040
+            KeyValuePair<String, List<Course>> classRequested = new KeyValuePair<string, List<Course>>("CSCI4040", classDict["CSCI4040"]);
+
+            List<Course> correctCourses = new List<Course>();
+            correctCourses = CorrectSemesterForward(classRequested.Value, "SPRING");
+            
+            foreach(Course c in correctCourses)
+            {
+                Console.WriteLine(c.getCourseName());
+            }
+
+            Console.WriteLine("-------------------------------");
+
+            List<Course> coursesNotTaken = CoursesNotTakenForward(prereqList, classesTaken);
+
+            foreach(Course c in coursesNotTaken)
+            {
+                Console.WriteLine(c.getCourseName());
+            }
+
+        }
+
+        //This is the method which we use during forward chaining to only return the list of classes they can take because of the semester 
+        static List<Course> CorrectSemesterForward(List<Course> inputCourses, string currentSemester)
+        {
+            //Here we create an empty list which we will return with our new list of classes they can take
+            List<Course> courseResults = new List<Course>();
+
+            //Here we move through each class we input into the method
+            foreach (Course c in inputCourses)
+            {
+                //If the semesters match, then we add it to our new and improved list
+                if(c.getCourseSemester() == currentSemester)
+                {
+                    courseResults.Add(c);
+                }
+            }
+
+            //Here we return our new list
+            return courseResults;
+        }
+
+        //This method checks to see if we have previously taken the course 
+        static List<Course> CoursesNotTakenForward(List<Course> inputCourseList, List<Course> inputStudentList)
+        {
+
+            foreach(Course c in inputCourseList)
+            {
+                foreach(Course n in inputStudentList)
+                {
+                    if(c.getCourseName() == n.getCourseName())
+                    {
+                        //If the names match up then we remove the class from our input of all classes
+                        inputCourseList.Remove(c);
+                    }
+                }
+            }
+
+            //Here we simply return our input list as our new results list
+            return inputCourseList;
+        }
+    }
+}

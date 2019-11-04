@@ -1,0 +1,10 @@
+E:\Users\Daylan Post\Documents\College\Final Semester\AI\StudentAdvisement-master\StudentAdvisement-master\StudentAdvisement\bin\Debug\StudentAdvisement.exe.config
+E:\Users\Daylan Post\Documents\College\Final Semester\AI\StudentAdvisement-master\StudentAdvisement-master\StudentAdvisement\bin\Debug\StudentAdvisement.exe
+E:\Users\Daylan Post\Documents\College\Final Semester\AI\StudentAdvisement-master\StudentAdvisement-master\StudentAdvisement\bin\Debug\StudentAdvisement.pdb
+E:\Users\Daylan Post\Documents\College\Final Semester\AI\StudentAdvisement-master\StudentAdvisement-master\StudentAdvisement\obj\Debug\StudentAdvisement.csprojAssemblyReference.cache
+E:\Users\Daylan Post\Documents\College\Final Semester\AI\StudentAdvisement-master\StudentAdvisement-master\StudentAdvisement\obj\Debug\StudentAdvisement.Form1.resources
+E:\Users\Daylan Post\Documents\College\Final Semester\AI\StudentAdvisement-master\StudentAdvisement-master\StudentAdvisement\obj\Debug\StudentAdvisement.Properties.Resources.resources
+E:\Users\Daylan Post\Documents\College\Final Semester\AI\StudentAdvisement-master\StudentAdvisement-master\StudentAdvisement\obj\Debug\StudentAdvisement.csproj.GenerateResource.cache
+E:\Users\Daylan Post\Documents\College\Final Semester\AI\StudentAdvisement-master\StudentAdvisement-master\StudentAdvisement\obj\Debug\StudentAdvisement.csproj.CoreCompileInputs.cache
+E:\Users\Daylan Post\Documents\College\Final Semester\AI\StudentAdvisement-master\StudentAdvisement-master\StudentAdvisement\obj\Debug\StudentAdvisement.exe
+E:\Users\Daylan Post\Documents\College\Final Semester\AI\StudentAdvisement-master\StudentAdvisement-master\StudentAdvisement\obj\Debug\StudentAdvisement.pdb
