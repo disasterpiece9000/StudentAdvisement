@@ -35,47 +35,53 @@ namespace StudentAdvisement
 
         public void getCourseList()
         {
+            
+            Dictionary<string, Course> courseList = new Dictionary<string, Course>();
+            System.IO.StreamReader courseText = null;
+
             try
             {
-                Dictionary<string, Course> courseList = new Dictionary<string, Course>();
-
                 // Read all lines from CourseList.txt
-                System.IO.StreamReader courseText = new System.IO.StreamReader("CourseList.txt");
-
-
-                // Process each course line by line
-                string line;
-                while ((line = courseText.ReadLine()) != null)
-                {
-
-                    // Parse data delimited by tabs, dashes, and commas
-                    string[] courseData = line.Split('\t');
-                    string[] mainCourseData = courseData[0].Split('-');
-                    string courseName = mainCourseData[0];
-                    string[] semesters = mainCourseData[1].Split(',');
-                    string[] prereqData = courseData[1].Split(',');
-
-                    // Put prerequs in a dict
-                    Dictionary<string, Course> prereqList = new Dictionary<string, Course>();
-                    for (int i = 0; i < prereqData.Length; i += 2)
-                    {
-                        prereqList[prereqData[i]] = new Course("Prereq", prereqData[i], prereqData[i + 1][0]);
-                    }
-
-                    // Store course and prerequs in master list
-                    courseList[courseName] = new Course("Course", courseName, prereqList, semesters);
-                }
-
-                masterCourseList = courseList;
+                courseText = new System.IO.StreamReader("CourseList.txt");
             }
             catch
             {
                 System.Windows.Forms.MessageBox.Show("The program could not find the master course list! Check the file path and place the Course List within the Debug Folder!");
             }
+
+
+            // Process each course line by line
+            string line;
+            while ((line = courseText.ReadLine()) != null)
+            {
+
+                // Parse data delimited by tabs, dashes, and commas
+                string[] courseData = line.Split('\t');
+                string[] mainCourseData = courseData[0].Split('-');
+                string courseName = mainCourseData[0];
+                string[] semesters = mainCourseData[1].Split(',');
+                string[] prereqData = courseData[1].Split(',');
+
+                // Put prerequs in a dict
+                Dictionary<string, Course> prereqList = new Dictionary<string, Course>();
+
+                // Check if course has any prereqs
+                if (prereqData[0] != "")
+                {
+                    for (int i = 0; i < prereqData.Length; i += 2)
+                    {
+                        prereqList[prereqData[i]] = new Course("Prereq", prereqData[i], prereqData[i + 1][0]);
+                    }
+                }
+
+                // Store course and prerequs in master list
+                courseList[courseName] = new Course("Course", courseName, prereqList, semesters);
+            }
+                masterCourseList = courseList; 
         }
         
         //Checks the semester cobo box and compares it to the current course
-    public bool checkSemester()
+        public bool checkSemester()
         {
             foreach (string semester in currentCourseCheck.Semesters)
             {
@@ -120,8 +126,16 @@ namespace StudentAdvisement
                 checkStepQueue.AddFirst(new string[] { "check prereq", "The student meets the prereq requirements for " + prereq.Name, currentCourseCheck.Name });
             }
 
-            currentPrereqCheck = prereqCheckQueue.First();
-            prereqCheckQueue.RemoveFirst();
+            if (prereqCheckQueue.Count > 0)
+            {
+                currentPrereqCheck = prereqCheckQueue.First();
+                prereqCheckQueue.RemoveFirst();
+            }
+            else
+            {
+                validCourses.Add(currentCourseCheck);
+                getNextCourse();
+            } 
         }
 
         public void getNextCourse()
@@ -207,6 +221,11 @@ namespace StudentAdvisement
 
         private void validBtn_Click(object sender, EventArgs e)
         {
+            if (selectedSemester == null) return;
+
+            // Submit taken courses if not already done
+            submitBtn_Click(null, null);
+
             validCourses = new List<Course>();
             checkStepQueue = new LinkedList<string[]>();
 
@@ -225,8 +244,11 @@ namespace StudentAdvisement
 
         private void checkBtn_Click(object sender, EventArgs e)
         {
+            // Submit taken courses if not already done
+            submitBtn_Click(null, null);
+
             // Handle empty text box
-            if (checkTxtBox.Text == "") return;
+            if (checkTxtBox.Text == "" || selectedSemester == null) return;
 
             // Handle invalid course entered
             if (!masterCourseList.ContainsKey(checkTxtBox.Text))
@@ -344,6 +366,8 @@ namespace StudentAdvisement
 
             //This may set our cmb box to blank text
             semesterCmbBox.ResetText();
+
+            getCourseList();
         }
 
         private void OpenCourseButton_Click(object sender, EventArgs e)

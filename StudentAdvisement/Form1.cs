@@ -162,7 +162,6 @@ namespace StudentAdvisement
         public bool removeCourseFromQueue(string[] stepData)
         {
             string courseName = stepData[2];
-
             if (courseName == currentCourseCheck.Name) return true;
             else return false;
         }

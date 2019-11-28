@@ -8,3 +8,12 @@ E:\Users\Daylan Post\Documents\College\Final Semester\AI\StudentAdvisement-maste
 E:\Users\Daylan Post\Documents\College\Final Semester\AI\StudentAdvisement-master\StudentAdvisement-master\StudentAdvisement\obj\Debug\StudentAdvisement.csproj.CoreCompileInputs.cache
 E:\Users\Daylan Post\Documents\College\Final Semester\AI\StudentAdvisement-master\StudentAdvisement-master\StudentAdvisement\obj\Debug\StudentAdvisement.exe
 E:\Users\Daylan Post\Documents\College\Final Semester\AI\StudentAdvisement-master\StudentAdvisement-master\StudentAdvisement\obj\Debug\StudentAdvisement.pdb
+C:\Users\HackerMan\source\repos\StudentAdvisementFinal\StudentAdvisement-master-final\StudentAdvisement\bin\Debug\StudentAdvisement.exe.config
+C:\Users\HackerMan\source\repos\StudentAdvisementFinal\StudentAdvisement-master-final\StudentAdvisement\bin\Debug\StudentAdvisement.exe
+C:\Users\HackerMan\source\repos\StudentAdvisementFinal\StudentAdvisement-master-final\StudentAdvisement\bin\Debug\StudentAdvisement.pdb
+C:\Users\HackerMan\source\repos\StudentAdvisementFinal\StudentAdvisement-master-final\StudentAdvisement\obj\Debug\StudentAdvisement.csprojAssemblyReference.cache
+C:\Users\HackerMan\source\repos\StudentAdvisementFinal\StudentAdvisement-master-final\StudentAdvisement\obj\Debug\StudentAdvisement.Form1.resources
+C:\Users\HackerMan\source\repos\StudentAdvisementFinal\StudentAdvisement-master-final\StudentAdvisement\obj\Debug\StudentAdvisement.Properties.Resources.resources
+C:\Users\HackerMan\source\repos\StudentAdvisementFinal\StudentAdvisement-master-final\StudentAdvisement\obj\Debug\StudentAdvisement.csproj.GenerateResource.cache
+C:\Users\HackerMan\source\repos\StudentAdvisementFinal\StudentAdvisement-master-final\StudentAdvisement\obj\Debug\StudentAdvisement.exe
+C:\Users\HackerMan\source\repos\StudentAdvisementFinal\StudentAdvisement-master-final\StudentAdvisement\obj\Debug\StudentAdvisement.pdb
